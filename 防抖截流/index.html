@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul>
+		<li>
+			未做处理： <input type="text" id="ipt">
+			<div>函数被调用：<span id="count">0</span>次</div>
+		</li>
+
+		<li>
+			防抖处理： <input type="text" id="ipt2">
+			<div>函数被调用：<span id="count2">0</span>次</div>
+		</li>
+
+		<li>
+			截流处理： <input type="text" id="ipt3">
+			<div>函数被调用：<span id="count3">0</span>次</div>
+			<div>当前时间(分/秒)：<span id="time"></span></div>
+		</li>
+	</ul>
+
+	<script>
+		const oCount = document.getElementById('count');
+		const oIpt = document.getElementById('ipt');
+		let init = 0
+		oIpt.onkeyup = function() { 
+			oCount.innerText = ++init
+		}
+
+
+		const oCount2 = document.getElementById('count2');
+		const oIpt2 = document.getElementById('ipt2');
+
+		// 设置一个默认值 300ms
+		const debounce = (fn, wait = 300) => {
+			let time = null
+			return function(arguments) {
+				const _this = this, args = arguments
+				clearTimeout(time)
+				time = setTimeout(() => {
+					fn.apply(_this, [args])
+					// fn.call(_this, args)   //或者使用这个
+				}, wait)
+			}
+		}
+
+		let init2 = 0
+		oIpt2.onkeyup = debounce(function() {
+			oCount2.innerText = ++init2
+		}, 500)  //可以自己定义值
+
+
+		const oCount3 = document.getElementById('count3');
+		const oIpt3 = document.getElementById('ipt3');
+		const oTime = document.getElementById('time');
+
+		const throttle = (fn, threshhold = 1000) => {
+			let last,	deferTimer
+			return function(arguments) {
+				const _this = this, args = arguments
+				let now = +new Date()
+				if(last && now < last + threshhold) {
+					clearTimeout(deferTimer)
+					deferTimer = setTimeout(function () {
+            last = now
+            fn.call(_this, args)
+          }, threshhold)
+				} else {
+					 last = now
+           fn.call(_this, args)
+				}
+			}
+		}
+		let init3 = 0
+		const throttleIpt = throttle(function() {
+			let time = new Date().getMinutes() + ':' + new Date().getSeconds()
+			oTime.innerText = time
+			oCount3.innerText = ++init3
+		}, 1000)
+
+		oIpt3.onkeyup = function() {
+			throttleIpt()
+		}
+	</script>
+</body>
+</html>

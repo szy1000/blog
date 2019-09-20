@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+	<script>
+	function Peson (name, age) {
+		let obj = new Object()  //原料
+		obj.name = name;  
+		obj.age = age;
+		return obj
+	}
+
+
+	function Person(name, age) {
+		this.name = name;
+		this.age = age
+	}
+		// Object Boolean function Array  Null
+		// Person.prototype.__proto__
+
+		// var obj = new Object()
+
+		Object.prototype.name = 'init'
+		//构造函数。实例对象 原型（对象）
+		function Person(argument) {
+			// body...
+		}
+		//原型对象
+		// Person.prototype.name = '名字未定义'
+
+		//实例对象
+		var person1 = new Person();
+
+		person1.name = 'szy';
+		console.log(person1.name)   //szy
+
+		var person2 = new Person()
+		console.log('person2: ' + person2.name)  //undefined
+
+	</script>
+</body>
+</html><script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>

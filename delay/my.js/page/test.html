@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>测试my.js的page方法</title>
+    <script src="../my.js"></script>
+    <script src="page.js"></script>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .wrapper {
+        position: relative;
+        background-image: url("daydayup.png");
+        width: 320px;
+        height: 480px;
+        -webkit-background-size: 320px 480px;
+        background-size: 320px 480px;
+        color: #fff;
+        text-shadow: 3px 3px 3px #eee;
+    }
+    .word {
+        position: absolute;
+        font-size: 48px;
+    }
+    .day {
+        top: 390px;
+        left: 48px;
+    }
+    .day2 {
+        top: 315px;
+        left: 120px;
+    }
+    .to {
+        top: 240px;
+        left: 180px;
+    }
+    .up {
+        top: 160px;
+        left: 240px;
+    }
+    </style>
+    <style>
+    em {
+        display: block;
+        color: red;
+        font-style: normal;
+    }
+    
+    .clickme {
+        background-color: #eee;
+        cursor: pointer;
+        border: 1px solid red;
+    }
+    </style>
+</head>
+
+<body>
+    <script>
+    function log() {
+        var args = arguments;
+        var str = '';
+
+        for (var i = 0; i < args.length; i++) {
+            str += args[i].toString();
+            if (i < args.length - 1) {
+                str += ', ';
+            }
+        }
+        str += '<br>';
+
+        document.write(str);
+    }
+    </script>
+    <h1>测试my.js的page方法</h1>
+    <h4>1.引入page.js</h4>
+    <h4>2.给需要缩放适配的部分添上class='my_page'</h4>
+    <div class="my_page">
+        <div class="wrapper">
+            <div class="word day">天</div>
+            <div class="word day2">天</div>
+            <div class="word to">向</div>
+            <div class="word up">上</div>
+        </div>
+    </div>
+</body>
+
+</html>

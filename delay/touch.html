@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html{
+            -ms-touch-action: manipulation;
+            /*-webkit-touch-action: none;*/
+            /*-moz-touch-action: none;*/
+            /*-ms-touch-action: none;*/
+            /*-o-touch-action: none;*/
+            /*touch-action: none;*/
+        }
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #mask {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, .5);
+
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+
+            /*pointer-events: none;*/
+        }
+
+        #click{
+            /*touch-action: none;*/
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="mask"></div>
+    <h1 id="click">click</h1>
+    <script src="./vconsole.min.js"></script>
+
+<script>
+    // var vConsole = new VConsole();
+    // vConsole.clear()
+    var mask = document.getElementById('mask')
+    var click = document.getElementById('click')
+
+    // 方法二 touch事件与click事件不要混用
+    mask.ontouchstart = function (e) {
+        console.log('start', new Date().getMilliseconds())
+        mask.style.display = 'none'
+        // 方法二
+        // e.preventDefault()
+
+        // 方法三 用延时
+        // setTimeout(function () {
+        //     mask.style.display = 'none'
+        // }, 300)
+
+
+
+
+    }
+
+    // mask.ontouchmove = function() {
+    //     console.log('move')
+    // }
+    // mask.ontouchend = function() {
+    //     console.log('end', new Date().getMilliseconds())
+    // }
+
+    // mask.onclick = function() {
+    //     console.log('click', new Date().getMilliseconds())
+    // }
+    // mask.addEventListener('touchend', function () {
+    //     console.log('end')
+    // }, false)
+
+    click.onclick = function () {
+        console.log('click')
+    }
+</script>
+
+
+    penetrate
+
+    pointer-events: none;
+
+    https://www.zhangxinxu.com/wordpress/2018/07/chrome-safari-touchmove-preventdefault-treated-as-passive/
+
+    touch-action
+
+    如何测出300ms延时
+
+    https://www.google.com/search?q=%E5%A6%82%E4%BD%95%E6%B5%8B%E5%87%BA300ms%E5%BB%B6%E6%97%B6&oq=%E5%A6%82%E4%BD%95%E6%B5%8B%E5%87%BA300ms%E5%BB%B6%E6%97%B6&aqs=chrome..69i57.11941j0j1&sourceid=chrome&ie=UTF-8
+</body>
+</html>

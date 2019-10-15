@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>测试my.js的touch方法</title>
+    <script src="../my.js"></script>
+    <script src="touch.js"></script>
+    <style>
+    em {
+        display: block;
+        color: red;
+        font-style: normal;
+    }
+    .clickme {
+        background-color: #eee;
+        cursor: pointer;
+        border: 1px solid red;
+    }
+    </style>
+</head>
+<body>
+    <div id="console"></div>
+    <script>
+    function log() {
+        var args = arguments;
+        var str = '';
+
+        var console = document.getElementById('console');
+
+        for (var i = 0; i < args.length; i++) {
+            str += args[i].toString();
+            if (i < args.length - 1) {
+                str += ', ';
+            }
+        }
+        str += '<br>';
+
+        console.innerHTML += str;
+    }
+    </script>
+    <h1>测试my.js的touch方法</h1>
+    <em>存在跨页面点击穿透bug，建议页内所有链接全部使用js tap控制跳转，不要用a标签的href，也不要给a绑定click，可以解决bug</em>
+    <em>因为href默认是click触发，所以跨页面穿透和页内点击穿透在原理上是一致的</em>
+    <p>三种解决方案如下：</p>
+    <ul>
+        <li><a href="solution1_click_through_cross_page_bug.html">方案1</a></li>
+        <li><a href="solution2_click_through_cross_page_bug.html">方案2</a></li>
+        <li><a href="solution3_click_through_cross_page_bug.html">方案3</a></li>
+    </ul>
+
+
+    <h3>m$(str).tap(handler)</h3>
+    <p id="ele_touch_tap" class="clickme" style="height: 100px;">tap, singleTap, longTap, swipeRight</p>
+    <em>swipeLeft在浏览器中失效，因为左右滑默认是切换页面，longTap会弹出上下文菜单，但仍然会触发</em>
+    <script>
+    m$('#ele_touch_tap').tap(function() {
+        log('exe tap handler');
+    });
+    m$('#ele_touch_tap').singleTap(function() {
+        log('exe singleTap handler');
+    });
+    m$('#ele_touch_tap').longTap(function() {
+        log('exe longTap handler');
+    });
+    m$('#ele_touch_tap').swipeRight(function() {
+        log('exe swipeRight handler');
+    });
+    </script>
+
+
+</body>
+</html>

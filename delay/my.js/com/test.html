@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>测试my.js的com方法</title>
+    <script src="../my.js"></script>
+    <script src="com.js"></script>
+    <style>
+    em {
+        display: block;
+        color: red;
+        font-style: normal;
+    }
+    .clickme {
+        background-color: #eee;
+        cursor: pointer;
+        border: 1px solid red;
+        height: 100px;
+        margin: 0;
+    }
+    </style>
+</head>
+<body>
+    <script>
+    function log() {
+        var args = arguments;
+        var str = '';
+
+        for (var i = 0; i < args.length; i++) {
+            str += args[i].toString();
+            if (i < args.length - 1) {
+                str += ', ';
+            }
+        }
+        str += '<br>';
+
+        document.write(str);
+    }
+    function click(ele, func) {
+        ele.addEventListener('click', func, false);
+    }
+    </script>
+    <h1>测试my.js的com方法</h1>
+
+
+
+    <h3>com.mask(ele, imgUrl, height)</h3>
+    <em>mask显示的img要求宽度为320px</em>
+    <p id="ele_mask" class="clickme">点这里显示蒙层</p>
+    <script>
+    my.com.mask(m$('#ele_mask').node, 'mask.png', 110);
+    </script>
+
+
+    <h3>com.alert(txt, [title], [arrBtnTxt], [callback])</h3>
+    <p id="ele0" class="clickme"></p>
+    <p id="ele1" class="clickme"></p>
+    <p id="ele2" class="clickme"></p>
+    <p id="ele3" class="clickme"></p>
+    <p id="ele4" class="clickme"></p>
+    <p id="ele5" class="clickme"></p>
+    <p id="ele6" class="clickme"></p>
+    <p id="ele7" class="clickme"></p>
+    <p id="ele8" class="clickme"></p>
+    <p id="ele9" class="clickme"></p>
+
+    <script>
+    for (var i = 0; i < document.getElementsByClassName('clickme').length - 1; i++) {
+        click(document.getElementById('ele' + i), function() {
+            my.com.alert('标题', '内容', ['', ''], function(res) {
+                console && console.log('res.no = ' + res.no + ' res.txt = ' + res.txt);
+            })
+        });
+    }
+    </script>
+
+</body>
+</html>

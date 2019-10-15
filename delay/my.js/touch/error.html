@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>ERROR：存在点透bug</title>
+    <script src="../my.js"></script>
+    <script src="touch.js"></script>
+    <style>
+    em {
+        display: block;
+        color: red;
+        font-style: normal;
+    }
+    .clickme {
+        background-color: #eee;
+        cursor: pointer;
+        border: 1px solid red;
+    }
+    </style>
+</head>
+<body>
+    <div id="console"></div>
+    <script>
+    function log() {
+        var args = arguments;
+        var str = '';
+
+        var console = document.getElementById('console');
+
+        for (var i = 0; i < args.length; i++) {
+            str += args[i].toString();
+            if (i < args.length - 1) {
+                str += ', ';
+            }
+        }
+        str += '<br>';
+
+        console.innerHTML += str;
+    }
+    </script>
+    <h1><em>ERROR：存在跨页面点透bug，请尽快联系nwujiajie@163.com修复bug</em></h1>
+
+
+</body>
+</html>

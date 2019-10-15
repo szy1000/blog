@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>测试my.js的local方法</title>
+    <script src="../my.js"></script>
+    <script src="local.js"></script>
+    <style>
+    em {
+        display: block;
+        color: red;
+        font-style: normal;
+    }
+    .clickme {
+        background-color: #eee;
+        cursor: pointer;
+        border: 1px solid red;
+    }
+    </style>
+</head>
+<body>
+    <script>
+    function log() {
+        var args = arguments;
+        var str = '';
+
+        for (var i = 0; i < args.length; i++) {
+            str += args[i].toString();
+            if (i < args.length - 1) {
+                str += ', ';
+            }
+        }
+        str += '<br>';
+
+        document.write(str);
+    }
+    </script>
+    <h1>测试my.js的local方法</h1>
+
+
+
+    <h3>local.set(key, value)</h3>
+    <p id="ele_local_set" class="clickme">写</p>
+    <script>
+    m$('#ele_local_set').on(function() {
+        my.local.set('my_test_key', 'my_test_value');
+    });
+    log('my.local.set(\'my_test_key\', \'my_test_value\')');
+    </script>
+
+    <h3>local.get(key)</h3>
+    <p id="ele_local_get" class="clickme">读</p>
+    <script>
+    m$('#ele_local_get').on(function() {
+        console.log(my.local.get('my_test_key'));
+    });
+    </script>
+
+    <h3>local.clear()</h3>
+    <p id="ele_local_clear" class="clickme">清空</p>
+    <script>
+    m$('#ele_local_clear').on(function() {
+        my.local.clear();
+    });
+    </script>
+
+
+
+</body>
+</html>

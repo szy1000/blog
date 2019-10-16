@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- 方法一 -->
+    <!--<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+
     <!--<meta http-equiv="X-UA-Compatible" content="ie=edge">-->
     <title>Document</title>
     <style>
@@ -14,7 +16,11 @@
             /*-o-touch-action: manipulation;*/
             /*touch-action: manipulation;*/
 
-            touch-action: manipulation;
+            /*touch-action: none;*/
+
+
+
+
         }
         html, body {
             height: 100%;
@@ -32,6 +38,9 @@
             top: 0;
             bottom: 0;
             background-color: rgba(0, 0, 0, .5);
+
+            /*pointer-events: none;*/
+
         }
 
         #click{
@@ -45,47 +54,45 @@
     <div id="mask"></div>
     <h1 id="click">click</h1>
     <script src="./vconsole.min.js"></script>
+    <script src="./fastclick.js"></script>
 
 <script>
+    // window.addEventListener( "load", function() {
+    //     FastClick.attach( document.body );
+    // }, false );
     // var vConsole = new VConsole();
 
     var mask = document.getElementById('mask')
     var click = document.getElementById('click')
 
     // 方法一 touch事件与click事件不要混用
-    mask.ontouchstart = function (e) {
-        console.log('start', new Date().getMilliseconds())
-        mask.style.display = 'none'
-        // 方法二
-        // e.preventDefault()
-
-        // 方法三 用延时
-        // setTimeout(function () {
-        //     mask.style.display = 'none'
-        // }, 300)
-
-        // 方法四 css pointer-events
-        // click.setAttribute('style', 'pointer-events:none')
-        // setTimeout(function () {
-        //     click.setAttribute('style', 'pointer-events:auto')
-        // }, 300)
-
-
-    }
-
-    // mask.ontouchmove = function() {
-    //     console.log('move')
-    // }
-    // mask.ontouchend = function() {
-    //     console.log('end', new Date().getMilliseconds())
+    let start = 0, end = 0;
+    // mask.ontouchstart = function (e) {
+    //     start = new Date().getTime()
+    //     console.log('start', )
     // }
 
-    // mask.onclick = function() {
-    //     console.log('click', new Date().getMilliseconds())
-    // }
+
+    // mask.addEventListener('touchstart', function () {
+    //     start = new Date().getTime()
+    //     console.log('start')
+    // }, false)
+
+    mask.addEventListener('click', function () {
+        end = new Date().getTime()
+        console.log('click' )
+        let duration = end - start
+        console.log(duration)
+    }, false)
+
     // mask.addEventListener('touchend', function () {
     //     console.log('end')
     // }, false)
+
+
+
+
+
 
     click.onclick = function () {
         console.log('click')

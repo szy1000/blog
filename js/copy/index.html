@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+
+		function deepCopy(obj) {
+		  var newobj = obj.constructor === Array ? [] : {};
+		  if (typeof obj !== 'object') {
+		    return obj;
+		  } else {
+	    for (var i in obj) {
+	      if (typeof obj[i] === 'object'){ //判断对象的这条属性是否为对象
+	        newobj[i] = deepCopy(obj[i]);  //若是对象进行嵌套调用
+	      }else{
+	        	newobj[i] = obj[i];
+	      	}
+	    	}
+	  	}
+  		return newobj; //返回深度克隆后的对象
+  	}
+
+    // console.log(deepCopy(5))
+  	// var arr = [1,2,3]
+  	// var arr2 = JSON.parse(JSON.stringify(arr))
+  	// arr2.push(4)
+  	// console.log('arr:', arr)
+  	// console.log('arr2:', arr2)
+
+  	var obj = {
+  		name: 'szy',
+      inner: {
+        name: 11
+      },
+  		show: function(){
+  			console.log(this.name)
+  		}
+  	}
+  	// var obj2 = obj
+    // var obj2 = JSON.parse(JSON.stringify(obj)) // 该方法不支持有函数
+
+  	// var obj2 = deepCopy(obj) // 该方法不支持有函数
+
+    // var obj2 = {...obj}
+
+    var obj2 = Object.create(obj)
+  	// obj2.name = "shenzhiyong"
+  	console.log('obj', obj)
+  	console.log('obj2', obj2)
+
+    // var arr1 = [1,2,3]
+    // var arr2 = arr1.slice()
+    // var arr2 = arr1.concat()
+    // var arr2 = deepCopy(arr1)
+    // arr2.push(4)
+    // console.log('arr1:', arr1)  // arr1: [1, 2, 3]
+    // console.log('arr2:', arr2)  // arr1: [1, 2, 3, 4]
+
+    function link() {
+      window.location.href = 'index2.html'
+    }
+  </script>
+</head>
+<body>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam ducimus eaque eos est exercitationem hic incidunt ipsum labore maxime, modi molestiae qui, quia quibusdam reiciendis unde voluptas voluptate voluptatem voluptatibus.</p>
+  <a href="/index2.html">index2</a>
+  <div onclick=link()>index2</div>
+  <br>
+  <a href="/touch.html">touch</a>
+  <a href="/delay.html">delay</a>
+
+</body>
+</html>

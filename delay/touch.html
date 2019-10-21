@@ -14,10 +14,7 @@
             /*-o-touch-action: manipulation;*/
             /*touch-action: manipulation;*/
 
-            touch-action: manipulation;
-        }
-        html, body {
-            height: 100%;
+            /*touch-action: manipulation;*/
         }
 
         body {
@@ -26,12 +23,15 @@
         }
 
         #mask {
-            position: absolute;
+            position: fixed;
             left: 0;
             right: 0;
             top: 0;
             bottom: 0;
             background-color: rgba(0, 0, 0, .5);
+        }
+        #mask #btn{
+            
         }
 
         #click{
@@ -42,7 +42,9 @@
     </style>
 </head>
 <body>
-    <div id="mask"></div>
+    <div id="mask">
+        <div id="btn">关闭弹框</div>
+    </div>
     <h1 id="click">click</h1>
     <script src="./vconsole.min.js"></script>
 
@@ -50,12 +52,14 @@
     // var vConsole = new VConsole();
 
     var mask = document.getElementById('mask')
+    var btn = document.getElementById('btn')
     var click = document.getElementById('click')
+    let start = 0, end = 0;
 
     // 方法一 touch事件与click事件不要混用
-    mask.ontouchstart = function (e) {
-        console.log('start', new Date().getMilliseconds())
-        mask.style.display = 'none'
+    btn.ontouchstart = function (e) {
+        start = new Date().getTime()
+        // mask.style.display = 'none'
         // 方法二
         // e.preventDefault()
 
@@ -80,29 +84,19 @@
     //     console.log('end', new Date().getMilliseconds())
     // }
 
-    // mask.onclick = function() {
-    //     console.log('click', new Date().getMilliseconds())
-    // }
+    btn.onclick = function(e) {
+        end = new Date().getTime()
+        let duration = end - start
+        console.log('click', duration)
+        e.stopPropagation()
+    }
     // mask.addEventListener('touchend', function () {
     //     console.log('end')
     // }, false)
 
-    click.onclick = function () {
+    document.body.onclick = function () {
         console.log('click')
     }
 </script>
-
-
-    penetrate
-
-    pointer-events: manipulation;
-
-    https://www.zhangxinxu.com/wordpress/2018/07/chrome-safari-touchmove-preventdefault-treated-as-passive/
-
-    touch-action
-
-    如何测出300ms延时
-
-    https://www.google.com/search?q=%E5%A6%82%E4%BD%95%E6%B5%8B%E5%87%BA300ms%E5%BB%B6%E6%97%B6&oq=%E5%A6%82%E4%BD%95%E6%B5%8B%E5%87%BA300ms%E5%BB%B6%E6%97%B6&aqs=chrome..69i57.11941j0j1&sourceid=chrome&ie=UTF-8
 </body>
 </html>

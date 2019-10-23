@@ -3,20 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <!--<meta http-equiv="X-UA-Compatible" content="ie=edge">-->
     <title>微信关注「沈志勇说」</title>
     <style>
-        html{
-            /* 解决300ms 延时  iOS不支持*/
-            /*-webkit-touch-action: manipulation;*/
-            /*-moz-touch-action: manipulation;*/
-            /*-ms-touch-action: manipulation;*/
-            /*-o-touch-action: manipulation;*/
-            /*touch-action: manipulation;*/
-
-            /*touch-action: manipulation;*/
-        }
-
         body {
             margin: 0;
             padding: 0;
@@ -67,9 +55,6 @@
             text-align: center;
             line-height: 300px;
             font-size: 35px;
-            /*touch-action: manipulation;*/
-
-            /*pointer-events: manipulation;*/
         }
     </style>
 </head>
@@ -79,60 +64,32 @@
     <div id="btn">关闭弹框</div>
 </div>
 <a href="https://shenzhiyong.com.cn" id="click">沈志勇的官网链接</a>
-<script src="./vconsole.min.js"></script>
 
 <script>
-    // var vConsole = new VConsole();
-
     var show = document.getElementById('show')
     var mask = document.getElementById('mask')
     var btn = document.getElementById('btn')
-    var click = document.getElementById('click')
-    let start = 0, end = 0;
-
-
     show.onclick = function () {
         mask.style.display = 'block'
     }
-    // 方法一 touch事件与click事件不要混用
-    btn.ontouchstart = function (e) {
-        start = new Date().getTime()
-        // mask.style.display = 'none'
-        // 方法二
-        // e.preventDefault()
 
-        // 方法三 用延时
-        // setTimeout(function () {
-        //     mask.style.display = 'none'
-        // }, 300)
-
-        // 方法四 css pointer-events
-        click.setAttribute('style', 'pointer-events:none')
-        setTimeout(function () {
-            click.setAttribute('style', 'pointer-events:auto')
-        }, 300)
-
-    }
-
-    // mask.ontouchmove = function() {
-    //     console.log('move')
-    // }
-    // mask.ontouchend = function() {
-    //     console.log('end', new Date().getMilliseconds())
-    // }
-
-    btn.ontouchend = function(e) {
+    btn.addEventListener('touchstart', function (e) {
         mask.style.display = 'none'
-        end = new Date().getTime()
-        let duration = end - start
-        console.log('click', duration)
-        e.preventDefault()
-    }
-    // mask.addEventListener('touchend', function () {
-    //     console.log('end')
-    // }, false)
+        //方法一
+        // e.preventDefault()
+    }, false)
 
+    btn.addEventListener('touchmove', function () {
+        console.log('move')
+    }, false)
 
+    btn.addEventListener('touchend', function () {
+        console.log('touchend')
+    }, false)
+
+    btn.addEventListener('click', function () {
+        console.log('click',duration)
+    }, false)
 </script>
 </body>
 </html>

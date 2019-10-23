@@ -107,10 +107,10 @@
         // }, 300)
 
         // 方法四 css pointer-events
-        click.setAttribute('style', 'pointer-events:none')
-        setTimeout(function () {
-            click.setAttribute('style', 'pointer-events:auto')
-        }, 300)
+        // click.setAttribute('style', 'pointer-events:none')
+        // setTimeout(function () {
+        //     click.setAttribute('style', 'pointer-events:auto')
+        // }, 300)
 
     }
 
@@ -132,7 +132,9 @@
     //     console.log('end')
     // }, false)
 
-
+    click.onclick = function () {
+        console.log('click')
+    }
 </script>
 </body>
 </html>
